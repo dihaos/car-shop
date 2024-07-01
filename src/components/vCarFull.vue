@@ -37,14 +37,12 @@
         <li>
           <span>Год выпуска</span> <b>{{ car.year }}</b>
         </li>
-        <li>
-          <span>Пробег</span> <b>{{ (+car.run).toLocaleString() }} км</b>
+        <li v-if="car.run != 1">
+          <span>Пробег</span>
+          <b>{{ (+car.run).toLocaleString() }} км</b>
         </li>
-        <li>
+        <li v-if="car.run != 1">
           <span>Количество владельцев</span> <b>{{ car.owners_number }}</b>
-        </li>
-        <li>
-          <span>ПТС</span> <b>{{ car.pts }}</b>
         </li>
 
         <li>
@@ -53,9 +51,7 @@
         <li>
           <span>Цвет</span> <b>{{ car.color }}</b>
         </li>
-        <li>
-          <span>Двигатель</span> <b>{{ car.modification_id }}</b>
-        </li>
+
         <li>
           <span>КПП</span> <b>{{ car.kpp }}</b>
         </li>
@@ -68,7 +64,7 @@
           <mdicon name="map-marker-radius" />
           <div>
             <span class="carFull-params__label">Адрес</span>
-            г. Москва, Новоясеневский проспект 6
+            г. Санкт-Петербург, Стародеревенская ул., 11к2
           </div>
         </li>
         <li>

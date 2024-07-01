@@ -21,31 +21,42 @@
 </template>
 
 <script>
-import { useStore } from 'vuex';
-import { computed } from 'vue';
-import vCar from '@/components/vCar';
+import { useStore } from "vuex";
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+import vCar from "@/components/vCar";
 export default {
   components: { vCar },
-  props: ['model'],
+  props: ["model"],
   setup(props) {
     const store = useStore();
     if (props.model) {
-      store.dispatch('GET_FILTERS', {
-        mark: props.model.includes('ВАЗ')
-          ? props.model.replaceAll('-', ' ')
+      store.dispatch("GET_FILTERS", {
+        mark: props.model.includes("ВАЗ")
+          ? props.model.replaceAll("-", " ")
           : props.model,
         compl: store.getters.FILTERS.compl,
         carsView: store.getters.FILTERS.carsView,
       });
     }
     const carsView = computed(() => store.getters.FILTERS.carsView);
-    const cars = computed(() =>
-      store.getters.FILTERED_CARS.filter(
-        (item, index) => index < store.getters.FILTERS.carsView
-      )
-    );
+    const route = useRoute();
+    store.getters.FILTERED_CARS.filter((el) => el.run < 2);
+
+    const cars = computed(() => {
+      if (route.path === "/used-cars") {
+        return store.getters.FILTERED_CARS.filter(
+          (item, index) => index < store.getters.FILTERS.carsView
+        );
+      } else {
+        return store.getters.FILTERED_CARS.filter((el) => el.run == 1).filter(
+          (item, index) => index < store.getters.FILTERS.carsView
+        );
+      }
+    });
+
     const showMore = () =>
-      store.dispatch('GET_FILTERS', {
+      store.dispatch("GET_FILTERS", {
         mark: store.getters.FILTERS.mark,
         model: store.getters.FILTERS.model,
         compl: store.getters.FILTERS.compl,

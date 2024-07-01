@@ -1,6 +1,6 @@
 module.exports = {
   devServer: {
-    proxy: `https://kuplyauto.gnservice-used.ru`,
+    proxy: `http://azat.tandemdev.ru/kupimashinu/`,
   },
   css: {
     loaderOptions: {

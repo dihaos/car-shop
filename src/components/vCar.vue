@@ -62,7 +62,7 @@
       <div class="car-info">
         Цвет кузова: <strong>{{ car.color }}</strong>
       </div>
-      <div class="car-info">
+      <div v-if="car.run != 1" class="car-info">
         Пробег: <strong>{{ (+car.run).toLocaleString() }} км</strong>
       </div>
       <div class="car-info">
@@ -98,15 +98,15 @@
 
 <script>
 // import { useRouter } from 'vue-router';
-import { ref } from 'vue';
-import modalCallback from '@/components/modalCallback';
+import { ref } from "vue";
+import modalCallback from "@/components/modalCallback";
 export default {
   components: { modalCallback },
   props: {
     car: Object,
     zoom: Boolean,
   },
-  emits: ['open', 'close'],
+  emits: ["open", "close"],
   setup(props, { emit }) {
     const activeImage = ref(0);
     // const router = useRouter();
@@ -115,10 +115,10 @@ export default {
       show.value = false;
     };
     const modal = ref(false);
-    const id = ref('');
+    const id = ref("");
     const openPhoto = (arr, idx) => {
       if (!props.zoom) return false;
-      emit('open', { images: arr, active: idx });
+      emit("open", { images: arr, active: idx });
 
       // modal.value = true;
       // setTimeout(() => {
@@ -132,10 +132,10 @@ export default {
     };
     const closePhoto = () => {
       if (!props.zoom) return false;
-      const modalBody = document.querySelector('.car__modal.active');
+      const modalBody = document.querySelector(".car__modal.active");
       const swiper =
         modalBody.parentNode.parentNode.parentNode.parentNode.parentNode;
-      swiper.classList.remove('destroy');
+      swiper.classList.remove("destroy");
       modal.value = false;
     };
     const cancel = (close) => {
@@ -144,13 +144,13 @@ export default {
     const goToCar = (car) => {
       window.open(
         window.location.origin +
-          '/' +
-          car.mark_id.replaceAll(' ', '-') +
-          '/' +
+          "/" +
+          car.mark_id.replaceAll(" ", "-") +
+          "/" +
           car.id +
-          '/' +
+          "/" +
           window.location.search,
-        '_blank'
+        "_blank"
       );
       // router.push({
       //   path: `/${car.model.replaceAll(' ', '-').toLowerCase()}/${car.id}/`,

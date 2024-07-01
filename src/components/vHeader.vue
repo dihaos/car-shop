@@ -3,23 +3,27 @@
     <div class="container">
       <div class="header-flex">
         <div class="header-logo-diler">
-          <a href="/" @click.prevent="scrollTo('home-page')">
+          <RouterLink to="/" @click.prevent="scrollTo('home-page')">
             <img
-              :src="require(`@/assets/images/logo.svg`)"
+              :src="require(`@/assets/images/logo_car-hub-edit.jpg`)"
               alt="LADA"
               class="img-responsive"
             />
-          </a>
+          </RouterLink>
         </div>
         <div :class="[menu ? 'open' : '', 'header__nav']">
           <ul>
             <li v-if="!hideLink">
-              <a href="#" @click.prevent="goTo('cars-filters')"
-                >Авто в наличии</a
+              <RouterLink to="/" @click.prevent="goTo('cars-filters')"
+                >Новое авто</RouterLink
               >
             </li>
             <li v-if="!hideLink">
-              <a href="" @click.prevent="goBuyout">Продать</a>
+              <RouterLink
+                to="/used-cars"
+                @click.prevent="scrollTo('cars-filters')"
+                >Авто б/у</RouterLink
+              >
             </li>
             <li v-if="!hideLink">
               <a href="#" @click.prevent="goTo('banks')">Кредит</a>
@@ -31,13 +35,10 @@
         </div>
         <div class="header-contacts-info">
           <div class="subway">
-            <img
-              :src="require(`@/assets/images/subway-orange.png`)"
-              alt="метро"
-            />
-            <span>Теплый стан</span>
+            <img :src="require(`@/assets/images/subway-spb.svg`)" alt="метро" />
+            <span>Старая Деревня</span>
           </div>
-          <p><b>Новоясеневский проспект 6</b></p>
+          <p><b>Стародеревенская ул., 11к2</b></p>
         </div>
         <div class="my-phone">
           <div class="header-phone">
@@ -132,12 +133,6 @@ export default {
         scrollTo(id);
       }
     };
-    const goBuyout = () => {
-      window.open(
-        "http://vikup.gnservice-used.ru" + window.location.search,
-        "_blank"
-      );
-    };
     return {
       show,
       confirm,
@@ -147,7 +142,6 @@ export default {
       scrollTo,
       goTo,
       menu,
-      goBuyout,
       hideLink,
     };
   },
@@ -171,7 +165,7 @@ export default {
 	justify-content: center
 	img
 		position: relative
-		bottom: -2px
+		height: 20px
 		margin-right: 5px
 	span
 		font-size: 14px

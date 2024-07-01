@@ -5,7 +5,7 @@
       <div class="contacts-info">
         <div class="contacts-logo">
           <img
-            :src="require(`@/assets/images/logo.svg`)"
+            :src="require(`@/assets/images/logo_car-hub-edit.jpg`)"
             s
             alt="LADA"
             class="img-responsive"
@@ -13,13 +13,10 @@
         </div>
         <div class="contact-adress">
           <div class="subway">
-            <img
-              :src="require(`@/assets/images/subway-orange.png`)"
-              alt="метро"
-            />
-            <span>Теплый стан</span>
+            <img :src="require(`@/assets/images/subway-spb.svg`)" alt="метро" />
+            <span>Старая Деревня</span>
           </div>
-          г. Москва, Новоясеневский проспект 6
+          г. Санкт-Петербург, Стародеревенская ул., 11к2
         </div>
         <div class="contact-myphone">
           <v-phone></v-phone>
@@ -33,7 +30,7 @@
       </div>
     </div>
     <iframe
-      src="https://yandex.ru/map-widget/v1/?um=constructor%3Ab47d5241c028a9eebf64eafc97cd5365ae91c4e9d3636aed3b76ed465a68467e&amp;source=constructor"
+      src="https://yandex.ru/map-widget/v1/?um=constructor%3Aa35f073c5ba0f6124fd9aa89c20d2b39069c56fb92a6494cdbdcf935016d6331&amp;source=constructor"
       id="map"
       frameborder="0"
     ></iframe>

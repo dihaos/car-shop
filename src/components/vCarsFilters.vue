@@ -2,7 +2,9 @@
   <div id="cars-filters">
     <div class="container">
       <div class="filters__wrapper">
-        <h3>Подобрать автомобиль по параметрам</h3>
+        <h3>
+          Подобрать {{ usedCars ? "б/у" : "новый" }} автомобиль по параметрам
+        </h3>
         <div class="filters-wrap">
           <v-select
             :options="marks"
@@ -161,26 +163,29 @@
 </template>
 
 <script>
-import { useStore } from 'vuex';
-import { computed, reactive, ref, watch } from 'vue';
-import vSelect from 'vue-select';
-import 'vue-select/dist/vue-select.css';
-import Slider from '@vueform/slider';
-import '@vueform/slider/themes/default.css';
+import { useStore } from "vuex";
+import { computed, reactive, ref, watch } from "vue";
+import vSelect from "vue-select";
+import "vue-select/dist/vue-select.css";
+import Slider from "@vueform/slider";
+import "@vueform/slider/themes/default.css";
+import { useRoute } from "vue-router";
 export default {
   components: { vSelect, Slider },
   setup() {
+    const route = useRoute();
     const store = useStore();
     const cars = computed(() => store.getters.FILTERED_CARS);
     const activeCompl = computed(() => store.getters.FILTERS.compl);
     const activeKpp = computed(() => store.getters.FILTERS.kpp);
-    const complModel = ref('');
-    const kppModel = ref('');
+    const usedCars = computed(() => route.path === "/used-cars");
+    const complModel = ref("");
+    const kppModel = ref("");
     const activeModel = computed(() => store.getters.FILTERS.model);
-    const modelModel = ref('');
-    const markModel = ref('');
+    const modelModel = ref("");
+    const markModel = ref("");
 
-    const sortModel = ref('');
+    const sortModel = ref("");
     const priceToModel = ref(9999999);
     const priceFromModel = ref(0);
     const priceToLimit = computed(() => store.getters.FILTERS.priceToLimit);
@@ -227,13 +232,13 @@ export default {
       return `${value}₽`;
     };
     watch(activeKpp, (activeKpp) => {
-      if (activeKpp === '') kppModel.value = '';
+      if (activeKpp === "") kppModel.value = "";
     });
     watch(activeCompl, (activeCompl) => {
-      if (activeCompl === '') complModel.value = '';
+      if (activeCompl === "") complModel.value = "";
     });
     watch(activeModel, (activeModel) => {
-      if (activeModel === '') modelModel.value = '';
+      if (activeModel === "") modelModel.value = "";
     });
     watch(activeCar, (activeCar) => (markModel.value = activeCar));
     watch(markModel, () => filterActiveCars());
@@ -242,7 +247,7 @@ export default {
       filterActiveCars();
     };
     const filterActiveCars = () => {
-      store.dispatch('GET_FILTERS', {
+      store.dispatch("GET_FILTERS", {
         mark: markModel.value,
         model: modelModel.value,
         kpp: kppModel.value,
@@ -253,11 +258,11 @@ export default {
       });
     };
     const refreshFilter = () => {
-      store.dispatch('GET_FILTERS', {
-        mark: '',
-        model: '',
-        compl: '',
-        kpp: '',
+      store.dispatch("GET_FILTERS", {
+        mark: "",
+        model: "",
+        compl: "",
+        kpp: "",
         priceFrom: priceFromLimit.value,
         priceTo: priceToLimit.value,
         sorted: sortModel.value,
@@ -267,8 +272,8 @@ export default {
     };
     const scrollTo = (id) => {
       document.getElementById(id).scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
+        behavior: "smooth",
+        block: "start",
       });
     };
     const updateSlider = () => {
@@ -300,7 +305,7 @@ export default {
       changeSlider();
     };
     const clickOut = (e) => {
-      if (dropdown.value && !e.classList.value.includes('select')) {
+      if (dropdown.value && !e.classList.value.includes("select")) {
         dropdown.value = false;
       }
     };
@@ -309,6 +314,7 @@ export default {
       sortModel,
       scrollTo,
       cars,
+      usedCars,
       prices,
       compls,
       format,

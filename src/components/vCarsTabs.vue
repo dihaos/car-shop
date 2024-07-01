@@ -51,20 +51,21 @@
 </template>
 
 <script>
-import { useStore } from 'vuex';
-import { computed, defineComponent, ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { Swiper, SwiperSlide } from 'swiper/vue/swiper-vue';
-import 'swiper/swiper-bundle.min.css';
-import 'swiper/swiper.min.css';
-import 'swiper/modules/navigation/navigation.min.css';
-import SwiperCore, { Navigation } from 'swiper';
+import { useStore } from "vuex";
+import { computed, defineComponent, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { Swiper, SwiperSlide } from "swiper/vue/swiper-vue";
+import "swiper/swiper-bundle.min.css";
+import "swiper/swiper.min.css";
+import "swiper/modules/navigation/navigation.min.css";
+import SwiperCore, { Navigation } from "swiper";
 SwiperCore.use([Navigation]);
 export default defineComponent({
   components: { Swiper, SwiperSlide },
   setup() {
     const store = useStore();
     const router = useRouter();
+    const route = useRoute();
     const models = computed(() => store.getters.MODELS);
     const marks = computed(() => store.getters.MARKS);
     const mark = computed(() => store.getters.FILTERS.mark);
@@ -80,28 +81,31 @@ export default defineComponent({
       var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
     };
     const changeTab = (str) => {
-      store.dispatch('GET_FILTERS', {
+      store.dispatch("GET_FILTERS", {
         mark: str,
-        compl: '',
-        model: '',
-        kpp: '',
+        compl: "",
+        model: "",
+        kpp: "",
       });
-      scrollTo('cars-cards');
+      scrollTo("cars-cards");
     };
 
     const goTo = (id) => {
-      router.push('/' + id);
-      store.dispatch('GET_FILTERS', {
+      if (route.path.indexOf("used") !== -1) {
+        router.push("/used-cars/" + id);
+      } else router.push("/" + id);
+
+      store.dispatch("GET_FILTERS", {
         mark: id,
-        compl: '',
-        model: '',
-        kpp: '',
+        compl: "",
+        model: "",
+        kpp: "",
       });
-      scrollTo('cars-cards');
+      scrollTo("cars-cards");
     };
 
     return {

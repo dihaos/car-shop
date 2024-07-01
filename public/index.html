@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
-    <title>GN Service - автомобили с пробегом</title>
+    <title>CAR-HUB - автомобили с пробегом</title>
   </head>
   <body>
     <!-- Yandex.Metrika counter -->
@@ -30,14 +30,14 @@
       })(
         window,
         document,
-        'script',
-        'https://mc.yandex.ru/metrika/tag.js',
-        'ym'
+        "script",
+        "https://mc.yandex.ru/metrika/tag.js",
+        "ym"
       );
 
       ym(
-        window.location.pathname.indexOf('all') === -1 ? 90956756 : 91455889,
-        'init',
+        window.location.pathname.indexOf("all") === -1 ? 90956756 : 91455889,
+        "init",
         {
           clickmap: true,
           trackLinks: true,
@@ -69,37 +69,37 @@
       (function (w, d, n, c) {
         w.CalltouchDataObject = n;
         w[n] = function () {
-          w[n]['callbacks'].push(arguments);
+          w[n]["callbacks"].push(arguments);
         };
-        if (!w[n]['callbacks']) {
-          w[n]['callbacks'] = [];
+        if (!w[n]["callbacks"]) {
+          w[n]["callbacks"] = [];
         }
-        w[n]['loaded'] = false;
-        if (typeof c !== 'object') {
+        w[n]["loaded"] = false;
+        if (typeof c !== "object") {
           c = [c];
         }
-        w[n]['counters'] = c;
+        w[n]["counters"] = c;
         for (var i = 0; i < c.length; i += 1) {
           p(c[i]);
         }
         function p(cId) {
-          var a = d.getElementsByTagName('script')[0],
-            s = d.createElement('script'),
+          var a = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
             i = function () {
               a.parentNode.insertBefore(s, a);
             },
-            m = typeof Array.prototype.find === 'function',
-            n = m ? 'init-min.js' : 'init.js';
-          s.type = 'text/javascript';
+            m = typeof Array.prototype.find === "function",
+            n = m ? "init-min.js" : "init.js";
+          s.type = "text/javascript";
           s.async = true;
-          s.src = 'https://mod.calltouch.ru/' + n + '?id=' + cId;
-          if (w.opera == '[object Opera]') {
-            d.addEventListener('DOMContentLoaded', i, false);
+          s.src = "https://mod.calltouch.ru/" + n + "?id=" + cId;
+          if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", i, false);
           } else {
             i();
           }
         }
-      })(window, document, 'ct', '8jcyjwig');
+      })(window, document, "ct", "8jcyjwig");
     </script>
     <!-- calltouch -->
   </body>

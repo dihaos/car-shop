@@ -11,15 +11,15 @@
 </template>
 
 <script>
-import vBanner from '@/components/vBanner';
-import vCarsList from '@/components/vCarsList';
-import vCarsTabs from '@/components/vCarsTabs';
-import vCarsFilters from '@/components/vCarsFilters';
+import vBanner from "@/components/vBanner";
+import vCarsList from "@/components/vCarsList";
+import vCarsTabs from "@/components/vCarsTabs";
+import vCarsFilters from "@/components/vCarsFilters";
 // import vCredit from '@/components/vCredit';
-import vBanks from '@/components/vBanks';
-import vContacts from '@/components/vContacts';
-import { useRoute, useRouter } from 'vue-router';
-import { useStore } from 'vuex';
+import vBanks from "@/components/vBanks";
+import vContacts from "@/components/vContacts";
+import { useRoute, useRouter } from "vue-router";
+import { useStore } from "vuex";
 export default {
   components: {
     vBanner,
@@ -36,7 +36,7 @@ export default {
     const router = useRouter();
     const model = route.params.model;
     const marks = store.getters.MARKS;
-    if (marks.indexOf(model) === -1) router.push('/404');
+    if (marks.indexOf(model) === -1) router.push("/404");
     return {
       model,
     };
